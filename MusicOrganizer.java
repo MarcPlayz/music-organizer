@@ -43,7 +43,7 @@ public class MusicOrganizer
      */
     public void listFile(int index)
     {
-        if(index >= 0 && index < files.size()) {
+        if(validIndex(index)) {
             String filename = files.get(index);
             System.out.println(filename);
         }
@@ -55,8 +55,44 @@ public class MusicOrganizer
      */
     public void removeFile(int index)
     {
-        if(index >= 0 && index < files.size()) {
+        if(validIndex(index)) {
             files.remove(index);
+        }
+    }
+    
+    public void checkIndex(int index) {
+        if (index >= 0 && index < files.size()) {
+            
+        }
+        else {
+            System.out.println("Error: index not valid. Enter an index between 0 and " + (files.size() - 1));
+        }
+    }
+    
+    public boolean validIndex(int index) {
+        if (index >= 0 && index < files.size()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
+    public void listAllFiles() {
+        int position = 0;
+        for (String file : files) {
+            String filename = files.get(position);
+            System.out.println(position + ": " + filename);
+            position ++;
+        }
+    }
+    
+    public void listMatching(String searchString) {
+        for (String filename : files) {
+            if (filename.contains(searchString)) {
+                //A match.
+                System.out.println(filename);
+            }
         }
     }
 }
